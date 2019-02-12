@@ -87,7 +87,7 @@ describe('controller', function () {
 			var todo = {title: 'my todo'};
 			setUpModel([todo]);
 
-			subject.setView('acti');
+			subject.setView('#/active');
 
 			expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
 
@@ -95,6 +95,12 @@ describe('controller', function () {
 
 		it('should show completed entries', function () {
 			// TODO: write test
+			var todo = {title: 'my todo'};
+			setUpModel([todo]);
+
+			subject.setView('#/completed');
+
+			expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
 		});
 	});
 
