@@ -83,12 +83,27 @@
 		// Generate an ID
 		var newId = (new Date).getTime();
 
+		// If an ID was actually given, find the item and update each property
+		if (id) {
+			for (var i = 0; i < todos.length; i++) {
+				if (todos[i].id === id) {
+					for (var key in updateData) {
+						todos[i][key] = updateData[key];
+					}
+					break;
+				}
+			}
+			localStorage[this._dbName] = JSON.stringify(data);
+			callback.call(this, todos);
+		} else {
+
 		// Assign an ID
 		updateData.id = parseInt(newId);
 
 		todos.push(updateData);
 		localStorage[this._dbName] = JSON.stringify(data);
 		callback.call(this, [updateData]);
+		}
 
 	};
 
